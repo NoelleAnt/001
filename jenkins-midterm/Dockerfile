@@ -1,0 +1,7 @@
+FROM docker:cli AS dockercli
+FROM jenkins/jenkins:lts
+USER root
+COPY --from=dockercli /usr/local/bin/docker /usr/local/bin/docker
+COPY --from=dockercli /usr/local/libexec/docker/cli-plugins/ /usr/local/libexec/docker/cli-
+plugins/
+USER jenkins
